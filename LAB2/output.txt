@@ -1,1 +1,29 @@
+Student Number: s29046
 
+Original List: [1, 2, 20, 3, 4, 5, 6, 10]
+Original Tuple: (1, 2, 3, 4, 5, 6, 10)
+Original Set: {1, 2, 3, 4, 5, 6, 10, 20}
+Original Dictionary: {1: 1, 2: 4, 20: 400, 3: 9, 4: 16, 5: 25, 6: 36, 10: 100, 11: 121}
+
+Manipulated List: [1, 2, 20, 3, 4, 5, 6, 10]
+Manipulated Tuple: (1, 2, 3, 4, 5, 6, 10)
+Union of Set: {1, 2, 3, 4, 5, 6, 9, 10, 11, 12, 20}
+Intersection of Set: {10}
+Difference of Set: {1, 2, 3, 4, 5, 6, 20}
+Updated Dictionary: {1: 1, 2: 4, 20: 400, 3: 9, 4: 16, 5: 25, 6: 36, 10: 100, 11: 121}
+
+List to Tuple: (1, 2, 20, 3, 4, 5, 6, 10)
+List to Set: {1, 2, 3, 4, 5, 6, 10, 20}
+List to Dictionary: {1: 1, 2: 4, 20: 400, 3: 9, 4: 16, 5: 25, 6: 36, 10: 100}
+Tuple to List: [1, 2, 3, 4, 5, 6, 10]
+Tuple to Set: {1, 2, 3, 4, 5, 6, 10}
+Tuple to Dictionary: {1: 1, 2: 4, 3: 9, 4: 16, 5: 25, 6: 36, 10: 100}
+Set to List: [1, 2, 3, 4, 5, 6, 10, 20]
+Set to Tuple: (1, 2, 3, 4, 5, 6, 10, 20)
+Set to Dictionary: {1: 1, 2: 4, 3: 9, 4: 16, 5: 25, 6: 36, 10: 100, 20: 400}
+Dictionary to List: [1, 2, 20, 3, 4, 5, 6, 10, 11]
+Dictionary to Tuple: (1, 2, 20, 3, 4, 5, 6, 10, 11)
+Dictionary to Set: {1, 2, 3, 4, 5, 6, 10, 11, 20}
+
+
+This is an additional line appended to the file.
