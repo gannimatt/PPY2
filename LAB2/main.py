@@ -16,7 +16,7 @@ Write a Python program that takes input from the user to create a list of intege
   a. Input: Ask the user to enter a series of space-separated integers.
 
   b. Convert Input: Convert the input string into a list of integers.
-  
+
   c. Sorting: Sort the list in ascending order.
 
   example:
@@ -65,7 +65,7 @@ Extend the previous Python program to include tuples. Now, in addition to creati
   example:
   ```
   Enter a series of space-separated integers: 5 2 8 1 9
-  
+
   Sorted list: [1, 2, 5, 8, 9]
   Sorted tuple: (1, 2, 5, 8, 9)
   ```
@@ -92,11 +92,11 @@ Extend the previous Python program to demonstrate the manipulation of lists usin
   a. Input: Ask the user to enter a series of space-separated integers.
 
   b. Convert Input: Convert the input string into a list of integers and a tuple of integers.
-  
+
   c. Manipulate List: Use the append(), insert(), and remove() functions to modify the list.
-  
+
   d. Attempt to Modify Tuple: Try to modify the tuple using the same operations as the list.
-  
+
   e. Print Output: Print the modified list and attempt to print the modified tuple.
 
   example:
@@ -368,64 +368,70 @@ Extend the previous Python program to write the output to a file and perform ope
   j. Modify File Content: Modify the content of the file by, for example, changing specific lines or adding new lines.
 """
 
-# Function to sum integers in a string
-def sum_integers_in_string(s):
-    return sum(int(word) for word in s.split() if word.isdigit())
-
 # Input
 input_numbers = input("Enter a series of space-separated integers: ")
-student_number = input("Enter your student number: ")
 
-# Convert Input
+# Convert Input to list and tuple
 numbers_list = list(map(int, input_numbers.split()))
 numbers_tuple = tuple(numbers_list)
-numbers_set = set(numbers_list)
-numbers_dict = {num: num**2 for num in numbers_list}
 
 # Manipulate List
+# Append 10 to the list
 numbers_list.append(10)
+# Insert 20 at index 2
 numbers_list.insert(2, 20)
+# Remove the element 8 if it exists
 if 8 in numbers_list:
     numbers_list.remove(8)
 
 # Attempt to Modify Tuple (this will raise an error)
 try:
-    numbers_tuple.append(10)
-except AttributeError:
+    # Append 10 to the tuple
+    numbers_tuple += (10,)
+except TypeError:
     print("Tuples are immutable and cannot be modified.")
 
 # Set Operations
-extra_set = {10, 11, 12}
-set_union = numbers_set.union(extra_set)
-set_intersection = numbers_set.intersection(extra_set)
-set_difference = numbers_set.difference(extra_set)
+# Create sets
+set1 = set(numbers_list)
+set2 = {9, 10, 11, 12}
+# Union
+set_union = set1.union(set2)
+# Intersection
+set_intersection = set1.intersection(set2)
+# Difference
+set_difference = set1.difference(set2)
 
 # Dictionary Operations
+numbers_dict = {num: num ** 2 for num in numbers_list}
+print("Original Dictionary:", numbers_dict)
+# Add a new key-value pair
 numbers_dict[11] = 121
-if 8 in numbers_dict:
-    del numbers_dict[8]
 
 # Type Conversion
 list_to_tuple = tuple(numbers_list)
 list_to_set = set(numbers_list)
-list_to_dict = {num: num**2 for num in numbers_list}
+list_to_dict = {num: num ** 2 for num in numbers_list}
+
 tuple_to_list = list(numbers_tuple)
 tuple_to_set = set(numbers_tuple)
-tuple_to_dict = {num: num**2 for num in numbers_tuple}
-set_to_list = list(numbers_set)
-set_to_tuple = tuple(numbers_set)
-set_to_dict = {num: num**2 for num in numbers_set}
+tuple_to_dict = {num: num ** 2 for num in numbers_tuple}
+
+set_to_list = list(set1)
+set_to_tuple = tuple(set1)
+set_to_dict = {num: num ** 2 for num in set1}
+
 dict_to_list = list(numbers_dict.keys())
 dict_to_tuple = tuple(numbers_dict.keys())
 dict_to_set = set(numbers_dict.keys())
 
 # Write Output to File
-filename = "output.txt"
-with open(filename, "w") as file:
+student_number = input("Enter your student number: ")
+with open("output.txt", "w") as file:
     file.write("Student Number: " + student_number + "\n\n")
     file.write("Original List: " + str(numbers_list) + "\n")
     file.write("Original Tuple: " + str(numbers_tuple) + "\n")
-    file.write("Original Set: " + str(numbers_set) + "\n")
+    file.write("Original Set: " + str(set1) + "\n")
     file.write("Original Dictionary: " + str(numbers_dict) + "\n\n")
     file.write("Manipulated List: " + str(numbers_list) + "\n")
     file.write("Manipulated Tuple: " + str(numbers_tuple) + "\n")
@@ -446,29 +452,29 @@ with open(filename, "w") as file:
     file.write("Dictionary to Tuple: " + str(dict_to_tuple) + "\n")
     file.write("Dictionary to Set: " + str(dict_to_set) + "\n")
 
-# Print "Content of the file:"
-print("Content of the file:")
-with open(filename, "r") as file:
+# Perform Operations on File
+# Count the number of lines in the file
+with open("output.txt", "r") as file:
     lines = file.readlines()
     num_lines = len(lines)
-    sum_of_integers = sum(sum_integers_in_string(line) for line in lines)
-    print("".join(lines))
+    print("Number of lines in the file:", num_lines)
 
-# Perform Operations on File:
-print("\nNumber of lines in the file:", num_lines)
-print("Sum of all integers in the file:", sum_of_integers)
+# Count the number of integers in the file
+num_integers = sum(line.count('[') + line.count(']') + line.count(',') for line in lines)
+print("Number of integers in the file:", num_integers)
 
-# Modify
-new_line = "New Line: This is an example of modifying file content.\n"
-with open(filename, "a") as file:
-    file.write(new_line)
+# Add all integers in the file (sum)
+total_sum = sum(int(num) for line in lines for num in line.split() if num.isdigit())
+print("Sum of all integers in the file:", total_sum)
 
-# Display updated file content
-print("\nUpdated file content:")
-with open(filename, "r") as file:
-    updated_content = file.read()
-    print(updated_content)
+# Modify the content of the file
+with open("output.txt", "a") as file:
+    file.write("\n\nThis is an additional line appended to the file.")
 
+# Print Content of the file
+print("\nContent of the file:")
+with open("output.txt", "r") as file:
+    print(file.read())
 
 """--------------------------------------------------------------------------------
 **Control Statements:**
@@ -527,66 +533,48 @@ These are fundamental constructs in Python programming that enable you to contro
 
   The program will generate the list of prime numbers up to 20, perform calculations, and write the results to 'prime_numbers.txt'.
 """
-def is_prime(n):
-    """Check if a number is prime."""
-    if n <= 1:
-        return False
-    for i in range(2, int(n**0.5) + 1):
-        if n % i == 0:
-            return False
-    return True
-
-def find_largest_integer(filename):
-    """Find the largest integer in a file."""
-    largest = None
-    with open(filename, 'r') as file:
-        for line in file:
-            for word in line.split():
-                if word.isdigit():
-                    num = int(word)
-                    if largest is None or num > largest:
-                        largest = num
-    return largest
 
 # Read the largest integer from 'output.txt'
-largest_integer = find_largest_integer('output.txt')
+largest_integer = None
+with open("output.txt", "r") as file:
+    for line in file:
+        if line.startswith("Original List:"):
+            largest_integer = max(map(int, line.split(":")[1].strip().strip("[]").split(",")))
+
+# Check if the largest integer is found
 if largest_integer is None:
-    print("No integer found in the file.")
+    print("Error: Largest integer not found in 'output.txt'")
 else:
-    # Generate a list of all prime numbers up to the largest integer
-    primes = [i for i in range(2, largest_integer + 1) if is_prime(i)]
-
-    # Print the list of prime numbers
-    print("List of prime numbers:", primes)
-
-    # Calculate the sum of all prime numbers
-    sum_of_primes = sum(primes)
-    print("Sum of prime numbers:", sum_of_primes)
-
-    # Determine the largest and smallest prime numbers
-    if primes:
-        largest_prime = max(primes)
-        smallest_prime = min(primes)
-        print("Largest prime number:", largest_prime)
-        print("Smallest prime number:", smallest_prime)
-
-        # Check if the largest integer itself is prime
-        if is_prime(largest_integer):
-            print(f"The largest integer {largest_integer} is prime.")
-        else:
-            print(f"The largest integer {largest_integer} is not prime.")
-
-        # Write to 'prime_numbers.txt'
-        with open('prime_numbers.txt', 'w') as file:
-            file.write(f"List of prime numbers: {primes}\n")
-            file.write(f"Sum of prime numbers: {sum_of_primes}\n")
-            file.write(f"Largest prime number: {largest_prime}\n")
-            file.write(f"Smallest prime number: {smallest_prime}\n")
-    else:
-        print("There are no prime numbers up to", largest_integer)
+    # Generate a list of prime numbers up to the largest integer
+    def is_prime(num):
+        if num < 2:
+            return False
+        for i in range(2, int(num ** 0.5) + 1):
+            if num % i == 0:
+                return False
+        return True
 
 
+    prime_numbers = [num for num in range(2, largest_integer + 1) if is_prime(num)]
+
+    # Calculate sum of all prime numbers
+    prime_sum = sum(prime_numbers)
+
+    # Determine largest and smallest prime numbers
+    largest_prime = max(prime_numbers)
+    smallest_prime = min(prime_numbers)
+
+    # Check if the largest integer itself is prime
+    largest_is_prime = is_prime(largest_integer)
+
+    # Write results to 'prime_numbers.txt'
+    with open("prime_numbers.txt", "w") as output_file:
+        output_file.write("List of Prime Numbers: {}\n".format(prime_numbers))
+        output_file.write("Sum of Prime Numbers: {}\n".format(prime_sum))
+        output_file.write("Largest Prime Number: {}\n".format(largest_prime))
+        output_file.write("Smallest Prime Number: {}\n".format(smallest_prime))
+        output_file.write("Is the largest integer prime: {}\n".format(largest_is_prime))
 
 """10.
-In the final main.py file, leave the results from task 8 and 9, commit and push
+In the final main.ipynb file, leave the results from task 8 and 9, commit and push
 """
