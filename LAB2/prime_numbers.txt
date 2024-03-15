@@ -1,1 +1,6 @@
+List of Prime Numbers: [2, 3, 5, 7, 11, 13, 17, 19]
+Sum of Prime Numbers: 77
+Largest Prime Number: 19
+Smallest Prime Number: 2
+Is the largest integer prime: False
 
